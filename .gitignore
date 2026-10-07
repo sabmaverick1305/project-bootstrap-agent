@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+*.egg-info/
+
+# Environments and caches
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Agent staging directories (if the agent is run with this repo as output dir)
+.bootstrap-staging/
+
+# Local secrets
+.env

@@ -1,0 +1,42 @@
+[project]
+name = "project-bootstrap-agent"
+version = "0.1.0"
+description = "AI agent that turns a project request into a runnable, validated local project."
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=1.12.0",
+    "httpx>=0.28.1",
+    "packaging>=26.3",
+    "pydantic>=2.13.5",
+]
+readme = "README.md"
+
+[project.scripts]
+bootstrap-agent = "app.main:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+# The package lives at ./app rather than the default src/<project_name>.
+module-name = "app"
+module-root = ""
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-m 'not integration'"
+markers = ["integration: needs network and uv; run with `pytest -m integration`"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.10",
+]
